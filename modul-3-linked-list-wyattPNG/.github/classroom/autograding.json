@@ -1,0 +1,44 @@
+{
+  "tests": [
+    {
+      "name": "Soal 1 - Single Linked List Implementation",
+      "setup": "g++ -std=c++23 -O2 -Wall -o tests/test_single_linked_list tests/test_single_linked_list.cpp single_linked_list.cpp",
+      "run": "./tests/test_single_linked_list",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 25
+    },
+    {
+      "name": "Soal 2 - Si Palui dan Relikui Siklus Resonansi",
+      "setup": "g++ -std=c++23 -O2 -o prob_a prob_a.cpp single_linked_list.cpp",
+      "run": "bash tests/grade_io.sh ./prob_a tests/prob_a",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 15,
+      "points": 25
+    },
+    {
+      "name": "Soal 3 - Double Linked List Implementation",
+      "setup": "g++ -std=c++23 -O2 -Wall -o tests/test_double_linked_list tests/test_double_linked_list.cpp double_linked_list.cpp",
+      "run": "./tests/test_double_linked_list",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 25
+    },
+    {
+      "name": "Soal 4 - Si Palui dan Tarik Tambang Dimensi",
+      "setup": "g++ -std=c++23 -O2 -o prob_b prob_b.cpp double_linked_list.cpp",
+      "run": "bash tests/grade_io.sh ./prob_b tests/prob_b",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 15,
+      "points": 25
+    }
+  ]
+}
