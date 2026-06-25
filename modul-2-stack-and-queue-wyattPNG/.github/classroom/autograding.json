@@ -1,0 +1,44 @@
+{
+  "tests": [
+    {
+      "name": "Soal 1 - Stack Implementation",
+      "setup": "cp stack.h stack && cp queue.h queue && g++ -std=c++23 -O2 -Wall -o tests/test_stack tests/test_stack.cpp stack.cpp",
+      "run": "./tests/test_stack",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 25
+    },
+    {
+      "name": "Soal 2 - Mesin Hitung Aneh",
+      "setup": "cp stack.h stack && cp queue.h queue && g++ -std=c++23 -O2 -o  prob1.cpp stack.cpp",
+      "run": "bash tests/grade_io.sh ./prob1 tests/prob1",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 15,
+      "points": 25
+    },
+    {
+      "name": "Soal 3 - Queue Implementation",
+      "setup": "cp stack.h stack && cp queue.h queue && g++ -std=c++23 -O2 -Wall -o tests/test_queue tests/test_queue.cpp queue.cpp",
+      "run": "./tests/test_queue",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 25
+    },
+    {
+      "name": "Soal 4 - Deretan Angka",
+      "setup": "cp stack.h stack && cp queue.h queue && g++ -std=c++23 -O2 -o  prob2.cpp queue.cpp",
+      "run": "bash tests/grade_io.sh ./prob2 tests/prob2",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 15,
+      "points": 25
+    }
+  ]
+}

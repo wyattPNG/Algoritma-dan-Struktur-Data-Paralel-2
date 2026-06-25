@@ -1,0 +1,84 @@
+name: Autograding Tests
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  checks: write
+  actions: read
+  contents: read
+
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup extensionless headers
+        run: |
+          cp stack.h stack
+          cp queue.h queue
+
+      - name: "[Soal 1] Stack Implementation"
+        id: soal1
+        uses: education/autograding-command-grader@v1
+        with:
+          test-name: "Soal 1 - Stack Implementation"
+          setup-command: >
+            g++ -std=c++23 -O2 -Wall
+            -o tests/test_stack
+            tests/test_stack.cpp stack.cpp
+          command: "./tests/test_stack"
+          timeout: 10
+          max-score: 25
+
+      - name: "[Soal 2] Mesin Hitung Aneh"
+        id: soal2
+        uses: education/autograding-command-grader@v1
+        with:
+          test-name: "Soal 2 - Mesin Hitung Aneh"
+          setup-command: >
+            g++ -std=c++23 -O2 prob1.cpp stack.cpp -o prob1
+          command: "bash tests/grade_io.sh ./prob1 tests/prob1"
+          timeout: 15
+          max-score: 25
+
+
+      - name: "[Soal 3] Queue Implementation"
+        id: soal3
+        uses: education/autograding-command-grader@v1
+        with:
+          test-name: "Soal 3 - Queue Implementation"
+          setup-command: >
+            g++ -std=c++23 -O2 -Wall
+            -o tests/test_queue
+            tests/test_queue.cpp queue.cpp
+          command: "./tests/test_queue"
+          timeout: 10
+          max-score: 25
+
+
+      - name: "[Soal 4] Si Palui dan Deretan Angka"
+        id: soal4
+        uses: education/autograding-command-grader@v1
+        with:
+          test-name: "Soal 4 - Deretan Angka"
+          setup-command: >
+            g++ -std=c++23 -O2 prob2.cpp queue.cpp -o prob2
+          command: "bash tests/grade_io.sh ./prob2 tests/prob2"
+          timeout: 15
+          max-score: 25
+
+
+      - name: Autograding Reporter
+        uses: education/autograding-grading-reporter@v1
+        if: always()
+        env:
+          SOAL1_RESULTS: "${{steps.soal1.outputs.result}}"
+          SOAL2_RESULTS: "${{steps.soal2.outputs.result}}"
+          SOAL3_RESULTS: "${{steps.soal3.outputs.result}}"
+          SOAL4_RESULTS: "${{steps.soal4.outputs.result}}"
+        with:
+          runners: soal1,soal2,soal3,soal4
